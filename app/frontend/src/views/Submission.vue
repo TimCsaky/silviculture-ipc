@@ -1,27 +1,22 @@
 <template>
   <v-container>
     <BaseSecure admin>
-      <v-card class="elevation-2 mx-auto mt-10 ipc-wrapper">
+      <v-card class="elevation-2 mx-auto mt-10">
+
         <v-toolbar flat color="grey lighten-3">
-          <v-card-title>Silviculture Operator Screening</v-card-title>
-          <!-- <router-link :to="{ name: 'Admin'}" class="pdf-link">
-            <v-icon color="red">picture_as_pdf</v-icon>
-          </router-link>-->
+          <v-card-title>{{ ipcPlanData.business.name }}</v-card-title>
         </v-toolbar>
 
-        <v-container class="px-8">
-          <h4 class="mt-5">{{ ipcPlanData.business.name }}</h4>
+        <v-container class="ipc-wrapper">
           <ul>
             <li>Submitted: {{ new Date(ipcPlanData.ipcPlan.createdAt).toLocaleString() }}</li>
             <li>Confirmation ID: {{ ipcPlanData.confirmationId }}</li>
           </ul>
 
-          <h4 class="mt-5">Business Address</h4>
-          <ul class="mt-2">
+          <h4>Business Address:</h4>
+          <ul>
             <li>{{ ipcPlanData.business.addressLine1 }}</li>
-            <template v-if="ipcPlanData.business.addressLine2 != ''">
-              <li> {{ ipcPlanData.business.addressLine2 }}</li>
-            </template>
+            <li v-if="ipcPlanData.business.addressLine2 != ''">{{ ipcPlanData.business.addressLine2 }}</li>
             <li>{{ ipcPlanData.business.city }}</li>
             <li>{{ ipcPlanData.business.province }}</li>
             <li>{{ ipcPlanData.business.PostalCode }}</li>
