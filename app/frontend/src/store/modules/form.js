@@ -175,6 +175,23 @@ export default {
       } finally {
         commit('setSubmitting', false);
       }
+    },
+
+    // update the store with data from db for a previous form submission
+    async updateStore({ commit }, ipcPlanId) {
+
+      const response = await ipcService.getIPCContent(ipcPlanId);
+      if (!response.data) {
+        throw new Error('No data returned from getIPCContent with icpPlanId' + ipcPlanId);
+      }
+      const data = response.data;
+
+      commit('updateIpcPlan', data.ipcPlan);
+      commit('updateBusiness', data.business);
+      commit('updateContacts', data.contacts[0]);
+      commit('updateCovidContact', data.covidContact);
+      commit('updateLocation', data.location);
     }
+
   }
 };
