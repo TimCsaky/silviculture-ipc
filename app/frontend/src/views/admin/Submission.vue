@@ -23,7 +23,7 @@
                   </div>
                   <div>
                     <strong>Confirmation ID:</strong>
-                    {{ ipcPlan.ipcPlanId.split('-')[0].toUpperCase() }}
+                    {{ this.ipcPlanId.split('-')[0].toUpperCase() }}
                   </div>
                 </div>
                 <Step2 :reviewMode="true" />
@@ -83,6 +83,9 @@ export default {
     document.querySelectorAll('.review-form input').forEach(q => {
       q.setAttribute('readonly', 'true');
     });
+    document.querySelectorAll('.review-form .v-select').forEach(q => {
+      q.style.pointerEvents = 'none';
+    });
   }
 };
 
@@ -105,10 +108,7 @@ export default {
     h4 {
       font-size: 130%;
     }
-
-    .hide-on-review {
-      display: none;
-    }
+    .hide-on-review,
     .bus-name-row {
       display: none;
     }
