@@ -80,7 +80,7 @@ export default {
     // update submission data in store
     this.updateStore(this.ipcPlanId);
     // apply vue attributes to improve layout
-    document.querySelectorAll('.review-form input, .review-form .v-select').forEach(q => {
+    document.querySelectorAll('.review-form input, .review-form .v-select, .review-form .ipc-datepicker').forEach(q => {
       q.setAttribute('readonly', 'true');
       q.style.pointerEvents = 'none';
     });
@@ -109,6 +109,9 @@ export default {
     .hide-on-review,
     .bus-name-row {
       display: none;
+    }
+    .ipc-datepicekr button {
+      display: none !important;
     }
   }
 }

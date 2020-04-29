@@ -38,7 +38,7 @@
         <!-- view individual form submission -->
         <template v-slot:item.ipcPlanId="{ item }">
           <router-link :to="{ name: 'Submission', params: { ipcPlanId: item.ipcPlanId } }">
-            <v-icon color="primary">remove_red_eye</v-icon>
+            <v-btn color="primary">view</v-btn>
           </router-link>
         </template>
       </v-data-table>
@@ -70,7 +70,7 @@ export default {
         { text: 'Business Name', align: 'start', value: 'name' },
         { text: 'Confirmation ID', align: 'start', value: 'confirmationId' },
         { text: 'Export', value: 'pdf'},
-        { text: 'View', value: 'ipcPlanId'}
+        { text: '', value: 'ipcPlanId'}
       ],
       submissions: [],
       loading: true,
@@ -132,7 +132,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .ipc-search {
   width: 100%;
   max-width: 20em;
@@ -140,32 +140,8 @@ export default {
 }
 .ipc-table {
   clear: both;
-}
-.ipc-table >>> tr.v-data-table__expanded__row td {
-  border-bottom: 0 !important;
-}
-.ipc-table >>> tr.v-data-table__expanded__content {
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-.ipc-table >>> tr.v-data-table__expanded__content td {
-  padding-bottom: 1em;
-}
-div.ipc-expanded {
-  font-size: 85% !important;
-  color: #494949 !important;
-  padding: 1rem 0;
-}
-/* mobile view */
-tr.v-data-table__expanded__content
-  td.v-data-table__mobile-table-row:nth-child(1) {
-  display: none !important;
-}
-tr.v-data-table__expanded__content
-  td.v-data-table__mobile-table-row:not(:nth-child(1)) {
-  padding: 0;
-}
-td.v-data-table__mobile-table-row div.ipc-expanded {
-  padding: 0.2rem 1rem;
+  .v-btn {
+    text-transform: none;
+  }
 }
 </style>
