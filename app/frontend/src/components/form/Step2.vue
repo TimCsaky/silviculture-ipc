@@ -7,7 +7,7 @@
 
     <v-form ref="form" v-model="step2Valid">
       <v-container>
-        <v-row>
+        <v-row class="bus-name-row">
           <v-col cols="12" lg="10">
             <h4 class="mb-1">Registered Business Name</h4>
             <OrgBookSearch

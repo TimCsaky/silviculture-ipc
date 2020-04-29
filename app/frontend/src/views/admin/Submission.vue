@@ -11,12 +11,21 @@
           <v-icon color="primary" large>picture_as_pdf</v-icon>
         </GeneratePdfButton>
 
-
         <v-container class="review-form">
           <v-stepper>
             <v-row no-gutters>
               <v-col cols="12" xl="8" offset-xl="2">
-                <h2 class="review-heading">Contact Information</h2>
+                <div class="container">
+                  <h2>{{ business.name }}</h2>
+                  <div>
+                    <strong>Submitted:</strong>
+                    {{ new Date(ipcPlan.createdAt).toLocaleString() }}
+                  </div>
+                  <div>
+                    <strong>Confirmation ID:</strong>
+                    {{ ipcPlan.ipcPlanId.split('-')[0].toUpperCase() }}
+                  </div>
+                </div>
                 <Step2 :reviewMode="true" />
                 <h2 class="review-heading">Before Workers Arrive</h2>
                 <Step3 :reviewMode="true" />
@@ -62,7 +71,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('form', ['ipcPlan']),
+    ...mapGetters('form', ['business', 'contacts', 'covidContact', 'ipcPlan', 'location']),
   },
   methods: {
     ...mapActions('form', ['updateStore']),
@@ -93,12 +102,19 @@ export default {
     .v-input--checkbox {
       margin-top: 0.2em !important;
     }
+    h4 {
+      font-size: 130%;
+    }
+
     .hide-on-review {
+      display: none;
+    }
+    .bus-name-row {
       display: none;
     }
   }
 }
-.pdf-link{
+.pdf-link {
   float: right;
   display: block;
 }
