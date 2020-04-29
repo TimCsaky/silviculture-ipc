@@ -276,8 +276,9 @@ export default {
     }
   },
   mounted() {
-    document.querySelectorAll('.review-form input').forEach(q => {
+    document.querySelectorAll('.review-form input, .review-form .v-select').forEach(q => {
       q.setAttribute('readonly', 'true');
+      q.style.pointerEvents = 'none';
     });
   }
 };

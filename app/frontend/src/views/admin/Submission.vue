@@ -80,10 +80,8 @@ export default {
     // update submission data in store
     this.updateStore(this.ipcPlanId);
     // apply vue attributes to improve layout
-    document.querySelectorAll('.review-form input').forEach(q => {
+    document.querySelectorAll('.review-form input, .review-form .v-select').forEach(q => {
       q.setAttribute('readonly', 'true');
-    });
-    document.querySelectorAll('.review-form .v-select').forEach(q => {
       q.style.pointerEvents = 'none';
     });
   }
