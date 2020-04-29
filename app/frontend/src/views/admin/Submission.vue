@@ -33,6 +33,21 @@
                 <Step4 :reviewMode="true" />
                 <h2 class="review-heading">If Workers Become Ill</h2>
                 <Step5 :reviewMode="true" />
+                <h2 class="review-heading">Form Completion Questions</h2>
+                <div class="container">
+                  <v-form v-model="step6Valid">
+                    <v-checkbox
+                      :readonly="true"
+                      v-model="ipcPlan.certifyAccurateInformation"
+                      label="I certify this information to be accurate"
+                    ></v-checkbox>
+                    <v-checkbox
+                      :readonly="true"
+                      v-model="ipcPlan.agreeToInspection"
+                      label="I agree that my planting camps will be subject to a site inspection"
+                    ></v-checkbox>
+                  </v-form>
+                </div>
               </v-col>
             </v-row>
           </v-stepper>
@@ -110,7 +125,7 @@ export default {
     .bus-name-row {
       display: none;
     }
-    .ipc-datepicekr button {
+    .ipc-datepicker button {
       display: none !important;
     }
   }

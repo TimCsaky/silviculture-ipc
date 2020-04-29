@@ -276,7 +276,7 @@ export default {
     }
   },
   mounted() {
-    document.querySelectorAll('.review-form input, .review-form .v-select').forEach(q => {
+    document.querySelectorAll('.review-form input, .review-form .v-select, .review-form .ipc-datepicker').forEach(q => {
       q.setAttribute('readonly', 'true');
       q.style.pointerEvents = 'none';
     });
@@ -301,6 +301,9 @@ export default {
     }
     .hide-on-review {
       display: none;
+    }
+    .ipc-datepicker button {
+      display: none !important;
     }
   }
 }

@@ -246,7 +246,7 @@
                   flat
                   outlined
                   solo
-                  class="ipc-datepicekr"
+                  class="ipc-datepicker"
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -279,7 +279,7 @@
                   flat
                   outlined
                   solo
-                  class="ipc-datepicekr"
+                  class="ipc-datepicker"
                 ></v-text-field>
               </template>
               <v-date-picker v-model="endDate" @input="endDateMenu = false" :readonly="reviewMode"></v-date-picker>
