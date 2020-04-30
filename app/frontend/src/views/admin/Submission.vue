@@ -109,29 +109,21 @@ export default {
 <style lang="scss" scoped>
 .review-form {
   padding: 0em;
-  background-color: none  !important;
   font-size: smaller;
-
-  .v-stepper{
+  .v-stepper {
     padding: 2em;
   }
-
   .pdf-link {
-  float: right;
-  display: block;
-}
-
-
+    float: right;
+    display: block;
+  }
   .review-heading {
     margin: 1em 0;
   }
-
   &::v-deep {
-
     .container {
-     padding: 0px !important;
+      padding: 0px !important;
     }
-
     h3,
     .v-input--checkbox {
       margin-top: 0.2em !important;
@@ -146,11 +138,6 @@ export default {
 }
 
 .review-form:not(.edit-mode) {
-
-  .v-text-field__details{
-    display: none  !important;
-  }
-
   &::v-deep {
     .bus-name-row {
       display: none;
@@ -158,7 +145,9 @@ export default {
     .ipc-datepicker button {
       display: none !important;
     }
+    .v-text-field__details {
+      display: none !important;
+    }
   }
 }
-
 </style>
