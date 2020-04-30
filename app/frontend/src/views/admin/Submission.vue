@@ -3,29 +3,32 @@
     <BaseSecure>
       <v-alert v-if="error" type="error" tile dense>An error occurred fetching this submission.</v-alert>
       <div v-else>
-        <router-link :to="{ name: 'Admin'}">
-          <v-btn color="primary" class="mb-5">Back</v-btn>
-        </router-link>
-
-        <GeneratePdfButton :ipcPlanId="this.ipcPlanId" class="pdf-link">
-          <v-icon color="primary" large>picture_as_pdf</v-icon>
-        </GeneratePdfButton>
-
         <v-container class="review-form">
           <v-stepper>
             <v-row no-gutters>
               <v-col cols="12" xl="8" offset-xl="2">
-                <div class="container">
-                  <h2>{{ business.name }}</h2>
-                  <div>
-                    <strong>Submitted:</strong>
-                    {{ new Date(ipcPlan.createdAt).toLocaleString() }}
-                  </div>
-                  <div>
-                    <strong>Confirmation ID:</strong>
-                    {{ this.ipcPlanId.split('-')[0].toUpperCase() }}
-                  </div>
-                </div>
+                <!-- <v-row class="mx-3 mt-5"> -->
+                <v-row class="mb-4">
+                  <v-col cols="8">
+                    <h2>{{ business.name }}</h2>
+                    <div>
+                      <strong>Submitted:</strong>
+                      {{ new Date(ipcPlan.createdAt).toLocaleString() }}
+                    </div>
+                    <div>
+                      <strong>Confirmation ID:</strong>
+                      {{ this.ipcPlanId.split('-')[0].toUpperCase() }}
+                    </div>
+                  </v-col>
+                  <v-col cols="4">
+                    <GeneratePdfButton :ipcPlanId="this.ipcPlanId" class="pdf-link">
+                      <v-btn color="primary">
+                        <v-icon class="mr-2">cloud_download</v-icon>PDF
+                      </v-btn>
+                    </GeneratePdfButton>
+                  </v-col>
+                </v-row>
+
                 <Step2 :reviewMode="true" />
                 <h2 class="review-heading">Before Workers Arrive</h2>
                 <Step3 :reviewMode="true" />
@@ -35,7 +38,7 @@
                 <Step5 :reviewMode="true" />
                 <h2 class="review-heading">Form Completion Questions</h2>
                 <div class="container">
-                  <v-form v-model="step6Valid">
+                  <v-form>
                     <v-checkbox
                       :readonly="true"
                       v-model="ipcPlan.certifyAccurateInformation"
@@ -105,15 +108,30 @@ export default {
 </script>
 <style lang="scss" scoped>
 .review-form {
+  padding: 0em;
+  background-color: none  !important;
   font-size: smaller;
-  .container:nth-child(2) {
-    padding: 0px !important;
+
+  .v-stepper{
+    padding: 2em;
   }
+
+  .pdf-link {
+  float: right;
+  display: block;
+}
+
+
   .review-heading {
-    margin: 12px;
+    margin: 1em 0;
   }
-  background-color: #efefef;
+
   &::v-deep {
+
+    .container {
+     padding: 0px !important;
+    }
+
     h3,
     .v-input--checkbox {
       margin-top: 0.2em !important;
@@ -121,7 +139,19 @@ export default {
     h4 {
       font-size: 130%;
     }
-    .hide-on-review,
+    .hide-on-review {
+      display: none;
+    }
+  }
+}
+
+.review-form:not(.edit-mode) {
+
+  .v-text-field__details{
+    display: none  !important;
+  }
+
+  &::v-deep {
     .bus-name-row {
       display: none;
     }
@@ -130,8 +160,5 @@ export default {
     }
   }
 }
-.pdf-link {
-  float: right;
-  display: block;
-}
+
 </style>

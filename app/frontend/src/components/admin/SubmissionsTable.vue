@@ -27,18 +27,21 @@
         loading-text="Loading... Please wait"
         item-key="confirmationId"
         class="ipc-table"
+        @click:row="clickRow"
       >
         <!-- view individual form submission -->
         <template v-slot:item.pdf="{ item }">
           <GeneratePdfButton :ipcPlanId="item.ipcPlanId">
-            <v-icon color="red">picture_as_pdf</v-icon>
+            <v-btn small color="primary">
+              <v-icon>cloud_download</v-icon>
+            </v-btn>
           </GeneratePdfButton>
         </template>
 
         <!-- view individual form submission -->
         <template v-slot:item.ipcPlanId="{ item }">
           <router-link :to="{ name: 'Submission', params: { ipcPlanId: item.ipcPlanId } }">
-            <v-btn color="primary">view</v-btn>
+            <v-btn small color="primary">view</v-btn>
           </router-link>
         </template>
       </v-data-table>
@@ -69,7 +72,7 @@ export default {
         { text: 'Submitted', value: 'created' },
         { text: 'Business Name', align: 'start', value: 'name' },
         { text: 'Confirmation ID', align: 'start', value: 'confirmationId' },
-        { text: 'Export', value: 'pdf'},
+        { text: 'PDF', value: 'pdf'},
         { text: '', value: 'ipcPlanId'}
       ],
       submissions: [],
@@ -113,6 +116,9 @@ export default {
       const pdf = `${Vue.prototype.$config.basePath}/${Vue.prototype.$config.apiPath}/ipc/pdf/${ipcPlanId}`;
       window.open(pdf, '_blank');
     },
+    clickRow(submission){
+      this.$router.push({ name: 'Submission', params: { ipcPlanId: submission.ipcPlanId } });
+    },
     showTableAlert(typ, msg) {
       this.showAlert = true;
       this.alertType = typ;
@@ -140,8 +146,6 @@ export default {
 }
 .ipc-table {
   clear: both;
-  .v-btn {
-    text-transform: none;
-  }
+  cursor: pointer;
 }
 </style>
